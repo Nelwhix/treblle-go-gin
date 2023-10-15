@@ -13,6 +13,7 @@ const (
 )
 
 func sendToTreblle(treblleInfo MetaData) {
+	log.Println("inside treblle goroutine")
 	bytesRepresentation, err := json.Marshal(treblleInfo)
 	if err != nil {
 		return

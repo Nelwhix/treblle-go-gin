@@ -16,9 +16,13 @@ const (
 
 func GinMiddleware() gin.HandlerFunc {
 	return func(gctx *gin.Context) {
+		log.Print("from treblle: handling new request")
 		startTime := time.Now()
 
 		requestInfo, errReqInfo := getRequestInfo(gctx.Request, startTime)
+		if errReqInfo != nil {
+			log.Printf("error getting request info: %v", errReqInfo.Error())
+		}
 
 		blw := &BodyLogWriter{Body: bytes.NewBufferString(""), ResponseWriter: gctx.Writer}
 		gctx.Writer = blw
