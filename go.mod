@@ -1,7 +1,5 @@
-module github.com/treblle/treblle-go-gin
+module github.com/Nelwhix/treblle-go-gin
 
 go 1.14
 
-require (
-	github.com/gin-gonic/gin v1.7.7
-)
+require github.com/gin-gonic/gin v1.7.7
