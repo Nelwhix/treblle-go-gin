@@ -1,5 +1,7 @@
 package treblle
 
+import "log"
+
 var Config internalConfiguration
 
 const defaultServerURL = "https://rocknrolla.treblle.com"
@@ -21,6 +23,7 @@ type internalConfiguration struct {
 }
 
 func Configure(config Configuration) {
+	log.Println("Hello Nelson!")
 	if config.ServerURL != "" {
 		Config.ServerURL = config.ServerURL
 	} else {
