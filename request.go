@@ -33,7 +33,7 @@ func getRequestInfo(r *http.Request, startTime time.Time) (RequestInfo, error) {
 		headers[k] = r.Header.Get(k)
 	}
 
-	var scheme string = "http"
+	scheme := "http"
 	if r.URL.Scheme != "" {
 		scheme = "https"
 	}

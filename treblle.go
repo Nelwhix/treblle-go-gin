@@ -3,6 +3,7 @@ package treblle
 import (
 	"bytes"
 	"encoding/json"
+	"log"
 	"net/http"
 	"time"
 )
@@ -19,7 +20,7 @@ func sendToTreblle(treblleInfo MetaData) {
 
 	req, err := http.NewRequest(http.MethodPost, Config.ServerURL, bytes.NewBuffer(bytesRepresentation))
 	if err != nil {
-		return
+		log.Printf("error creating treblle request: %v", err.Error())
 	}
 	// Set the content type from the writer, it includes necessary boundary as well
 	req.Header.Set("Content-Type", "application/json")
@@ -27,5 +28,8 @@ func sendToTreblle(treblleInfo MetaData) {
 
 	// Do the request
 	client := &http.Client{Timeout: timeoutDuration}
-	_, _ = client.Do(req)
+	_, err = client.Do(req)
+	if err != nil {
+		log.Printf("error making treblle request: %v", err.Error())
+	}
 }
